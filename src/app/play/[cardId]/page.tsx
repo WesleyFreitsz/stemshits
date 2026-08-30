@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { Navbar } from '@/components/Navbar';
 import { RulesModal } from '@/components/RulesModal';
 import { QRCodeScannerModal } from '@/components/QRCodeScannerModal';
-import { PhysicalCardPreviewModal } from '@/components/PhysicalCardPreviewModal';
 import { CardInfoBadge } from '@/components/CardInfoBadge';
 import { BandleStemPlayer } from '@/components/BandleStemPlayer';
 import { RevealModal } from '@/components/RevealModal';
@@ -25,7 +24,6 @@ export default function PlayCardPage() {
   // Modals state
   const [isRulesOpen, setIsRulesOpen] = useState(false);
   const [isScannerOpen, setIsScannerOpen] = useState(false);
-  const [isCardDeckOpen, setIsCardDeckOpen] = useState(false);
   const [isRevealOpen, setIsRevealOpen] = useState(false);
   const [earnedScore, setEarnedScore] = useState(5);
   const [unlockedCount, setUnlockedCount] = useState(1);
@@ -73,7 +71,6 @@ export default function PlayCardPage() {
       <Navbar
         onOpenRules={() => setIsRulesOpen(true)}
         onOpenScanner={() => setIsScannerOpen(true)}
-        onOpenCardDeck={() => setIsCardDeckOpen(true)}
       />
 
       {/* Main Container */}
@@ -153,26 +150,18 @@ export default function PlayCardPage() {
       />
 
       {song && (
-        <>
-          <PhysicalCardPreviewModal
-            isOpen={isCardDeckOpen}
-            onClose={() => setIsCardDeckOpen(false)}
-            song={song}
-          />
-
-          <RevealModal
-            isOpen={isRevealOpen}
-            onClose={() => setIsRevealOpen(false)}
-            song={song}
-            earnedScore={earnedScore}
-            unlockedCount={unlockedCount}
-            onPlayAgain={() => setIsRevealOpen(false)}
-            onScanNext={() => {
-              setIsRevealOpen(false);
-              setIsScannerOpen(true);
-            }}
-          />
-        </>
+        <RevealModal
+          isOpen={isRevealOpen}
+          onClose={() => setIsRevealOpen(false)}
+          song={song}
+          earnedScore={earnedScore}
+          unlockedCount={unlockedCount}
+          onPlayAgain={() => setIsRevealOpen(false)}
+          onScanNext={() => {
+            setIsRevealOpen(false);
+            setIsScannerOpen(true);
+          }}
+        />
       )}
     </div>
   );

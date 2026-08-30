@@ -5,12 +5,10 @@ import confetti from 'canvas-confetti';
 import { 
   X, 
   Award, 
-  ExternalLink, 
   Calendar, 
   Eye, 
   RotateCcw, 
-  QrCode,
-  Music2
+  QrCode
 } from 'lucide-react';
 import { Song } from '@/lib/types';
 
@@ -133,38 +131,25 @@ export function RevealModal({
           )}
         </div>
 
-        {/* Spotify Action */}
-        <div className="space-y-2.5">
-          <a
-            href={song.spotifyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl sm:rounded-2xl bg-[#1DB954] hover:bg-[#1ed760] text-black font-bold text-xs sm:text-sm transition-all shadow-lg shadow-[#1DB954]/20 cursor-pointer min-h-[46px]"
+        {/* Action Buttons */}
+        <div className="grid grid-cols-2 gap-2.5 pt-1">
+          <button
+            onClick={onPlayAgain}
+            type="button"
+            className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl sm:rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-zinc-200 hover:text-white transition-all cursor-pointer min-h-[46px]"
           >
-            <Music2 className="w-4 h-4 text-black fill-current" />
-            <span>Ouvir Faixa Completa no Spotify</span>
-            <ExternalLink className="w-3.5 h-3.5 text-black/70" />
-          </a>
+            <RotateCcw className="w-4 h-4" />
+            <span>Jogar de Novo</span>
+          </button>
 
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              onClick={onPlayAgain}
-              type="button"
-              className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-zinc-300 hover:text-white transition-all cursor-pointer min-h-[44px]"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span>Jogar de Novo</span>
-            </button>
-
-            <button
-              onClick={onScanNext}
-              type="button"
-              className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-200 text-black text-xs font-bold shadow-md shadow-amber-500/20 transition-all cursor-pointer min-h-[44px]"
-            >
-              <QrCode className="w-3.5 h-3.5 text-black" />
-              <span>Escanear Outra</span>
-            </button>
-          </div>
+          <button
+            onClick={onScanNext}
+            type="button"
+            className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-black text-xs sm:text-sm font-extrabold shadow-md shadow-amber-500/20 transition-all cursor-pointer min-h-[46px]"
+          >
+            <QrCode className="w-4 h-4 text-black" />
+            <span>Escanear Outra</span>
+          </button>
         </div>
       </div>
     </div>
