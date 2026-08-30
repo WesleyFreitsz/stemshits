@@ -101,13 +101,14 @@ export default function PlayCardPage() {
         {/* Content State */}
         {!loading && song && (
           <>
-            {/* Clues Card Info Badge */}
+            {/* Clues Card Info Badge com indicação da Pilha do Tabuleiro */}
             <CardInfoBadge
               cardCode={song.cardCode}
               releaseYear={song.releaseYear}
               youtubeViews={song.youtubeViews}
               difficulty={song.difficulty}
               difficultyLabel={song.difficultyLabel}
+              pile={song.pile}
               genre={song.genre}
             />
 

@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Calendar, Eye, ShieldCheck, Tag, Sparkles } from 'lucide-react';
-import { Difficulty } from '@/lib/types';
+import { Calendar, Eye } from 'lucide-react';
+import { Difficulty, BoardPile } from '@/lib/types';
 
 interface CardInfoBadgeProps {
   cardCode: string;
@@ -10,6 +10,7 @@ interface CardInfoBadgeProps {
   youtubeViews: string;
   difficulty: Difficulty;
   difficultyLabel?: string;
+  pile?: BoardPile;
   genre: string;
 }
 
@@ -19,32 +20,35 @@ export function CardInfoBadge({
   youtubeViews,
   difficulty,
   difficultyLabel,
+  pile,
   genre,
 }: CardInfoBadgeProps) {
-  const getDifficultyBadge = (diff: Difficulty) => {
-    switch (diff) {
-      case 'facil':
+  const getDifficultyBadge = (diff: Difficulty, p?: BoardPile) => {
+    const effectivePile = p || (diff === 'facil' ? 'verde' : diff === 'medio' ? 'amarela' : 'vermelha');
+
+    switch (effectivePile) {
+      case 'verde':
         return {
-          label: difficultyLabel || 'Fácil',
+          label: difficultyLabel || '🟢 Pilha Verde (Fácil)',
           bg: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
           dot: 'bg-emerald-400',
         };
-      case 'medio':
+      case 'amarela':
         return {
-          label: difficultyLabel || 'Médio',
+          label: difficultyLabel || '🟡 Pilha Amarela (Média)',
           bg: 'bg-amber-500/15 text-amber-400 border-amber-500/30',
           dot: 'bg-amber-400',
         };
-      case 'dificil':
+      case 'vermelha':
         return {
-          label: difficultyLabel || 'Difícil',
+          label: difficultyLabel || '🔴 Pilha Vermelha (Difícil)',
           bg: 'bg-rose-500/15 text-rose-400 border-rose-500/30',
           dot: 'bg-rose-400',
         };
     }
   };
 
-  const diffInfo = getDifficultyBadge(difficulty);
+  const diffInfo = getDifficultyBadge(difficulty, pile);
 
   return (
     <div className="w-full flex flex-col xs:flex-row items-center justify-between gap-2.5 p-3 sm:p-4 rounded-2xl bg-white/[0.04] border border-white/10 shadow-inner">
@@ -60,7 +64,7 @@ export function CardInfoBadge({
 
       {/* Clues Badges */}
       <div className="flex flex-wrap items-center justify-center xs:justify-end gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-semibold w-full xs:w-auto">
-        {/* Dificuldade */}
+        {/* Pilha / Dificuldade */}
         <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xl border ${diffInfo.bg}`}>
           <span className={`w-1.5 h-1.5 rounded-full ${diffInfo.dot} animate-pulse`} />
           <span className="font-bold">{diffInfo.label}</span>

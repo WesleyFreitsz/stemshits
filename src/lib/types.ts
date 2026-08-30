@@ -1,4 +1,5 @@
 export type Difficulty = 'facil' | 'medio' | 'dificil';
+export type BoardPile = 'verde' | 'amarela' | 'vermelha';
 
 export interface Stem {
   number: number;
@@ -17,9 +18,10 @@ export interface Song {
   youtubeViews: string;
   difficulty: Difficulty;
   difficultyLabel?: string;
+  pile?: BoardPile;
   genre: string;
-  spotifyUrl: string;
-  coverImage: string;
+  spotifyUrl?: string;
+  coverImage?: string;
   hint?: string;
   stems: Stem[];
 }
