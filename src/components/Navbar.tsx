@@ -1,18 +1,19 @@
 'use client';
 
 import React from 'react';
-import { Disc3, QrCode, HelpCircle } from 'lucide-react';
+import { Disc3, QrCode, HelpCircle, Layers } from 'lucide-react';
 import Link from 'next/link';
 
 interface NavbarProps {
   onOpenRules: () => void;
   onOpenScanner: () => void;
+  onOpenCardDeck?: () => void;
 }
 
-export function Navbar({ onOpenRules, onOpenScanner }: NavbarProps) {
+export function Navbar({ onOpenRules, onOpenScanner, onOpenCardDeck }: NavbarProps) {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#08080d]/90 backdrop-blur-xl">
-      <div className="max-w-5xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2">
+      <div className="max-w-5xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-1.5 sm:gap-2">
         {/* Logo / Brand */}
         <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0">
           <div className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-pink-500 shadow-md shadow-amber-500/20 text-black shrink-0">
@@ -28,15 +29,29 @@ export function Navbar({ onOpenRules, onOpenScanner }: NavbarProps) {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          {/* Ver Cartas Button */}
+          {onOpenCardDeck && (
+            <button
+              onClick={onOpenCardDeck}
+              type="button"
+              className="flex items-center gap-1 px-2.5 sm:px-3 py-2 rounded-xl text-xs sm:text-sm font-bold text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer whitespace-nowrap min-h-[40px]"
+              aria-label="Ver Cartas e QR Codes"
+            >
+              <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 shrink-0" />
+              <span className="hidden sm:inline">Ver Cartas</span>
+              <span className="sm:hidden">Cartas</span>
+            </button>
+          )}
+
           {/* Regras Button */}
           <button
             onClick={onOpenRules}
             type="button"
-            className="flex items-center gap-1 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold text-zinc-200 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer whitespace-nowrap min-h-[40px]"
+            className="flex items-center gap-1 px-2 sm:px-3 py-2 rounded-xl text-xs sm:text-sm font-bold text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer whitespace-nowrap min-h-[40px]"
             aria-label="Regras e Pontuação"
           >
-            <HelpCircle className="w-4 h-4 text-amber-400 shrink-0" />
-            <span className="hidden sm:inline">Regras & Pontos</span>
+            <HelpCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" />
+            <span className="hidden sm:inline">Regras</span>
             <span className="sm:hidden">Regras</span>
           </button>
 
@@ -47,8 +62,8 @@ export function Navbar({ onOpenRules, onOpenScanner }: NavbarProps) {
             className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold text-black bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-200 shadow-md shadow-amber-500/20 transition-all cursor-pointer whitespace-nowrap min-h-[40px]"
             aria-label="Escanear QR Code"
           >
-            <QrCode className="w-4 h-4 text-black shrink-0" />
-            <span className="hidden sm:inline">Escanear QR Code</span>
+            <QrCode className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-black shrink-0" />
+            <span className="hidden sm:inline">Escanear QR</span>
             <span className="sm:hidden">Escanear</span>
           </button>
         </div>
