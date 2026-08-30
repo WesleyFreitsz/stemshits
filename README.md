@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎵 Hitster Stems (Bandle Edition)
 
-## Getting Started
+Jogo de tabuleiro e cartas musicais inspirado na dinâmica social do **Hitster** e no sistema de faixas isoladas do **Bandle**.
 
-First, run the development server:
+---
+
+## 🚀 Como Funciona
+
+1. **Pegue a Carta Física:** Cada carta possui um **QR Code**, ano de lançamento (2019), visualizações no YouTube (1 Bilhão+) e nível de dificuldade (🟢 Fácil).
+2. **Escaneie com a Câmera:** O jogador da vez aponta a câmera do celular para o QR Code da carta. O navegador abre a rodada instantaneamente.
+3. **Ouça os Instrumentos (Stems):**
+   - A música começa tocando **apenas a Bateria** (1º instrumento).
+   - Acertar com 1 instrumento = **+5 Pontos** ⭐⭐⭐⭐⭐
+   - Desbloquear Sintetizador 1 + 2 = **+4 Pontos** ⭐⭐⭐⭐
+   - Desbloquear Sintetizador 3 = **+3 Pontos** ⭐⭐⭐
+   - Desbloquear Sintetizador 4 = **+2 Pontos** ⭐⭐
+   - Desbloquear Voz Principal = **+1 Ponto** ⭐
+4. **Revele e Ouça no Spotify:** Ao clicar em *Revelar*, o app comemora com confetes, exibe a resposta (*The Weeknd - Blinding Lights*), soma os pontos e oferece link direto para a faixa completa no Spotify.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Next.js 14+ / React 19** (App Router, Tailwind CSS)
+- **Web Audio API** (Sincronização 100% precisa e sem latência de 5 canais de áudio)
+- **Html5-QRCode** (Leitor de QR Code integrado para câmeras traseiras de celulares e webcams)
+- **Neon Postgres (Vercel)** (Armazenamento escalável de cartas, músicas, stems e histórico)
+- **Canvas Confetti & Framer Motion** (Micro-interações e celebração)
+
+---
+
+## 📦 Como Rodar Localmente
 
 ```bash
+# 1. Entrar na pasta do projeto
+cd C:\Users\wesle\.gemini\antigravity\scratch\music-hitster-game
+
+# 2. Iniciar o servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🗄️ Configuração do Banco Neon Postgres (Opcional para produção)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Crie um projeto no [Neon.tech](https://neon.tech) ou adicione a integração Neon Postgres no dashboard da [Vercel](https://vercel.com).
+2. Copie o arquivo `.env.example` para `.env.local`:
+   ```bash
+   cp .env.example .env.local
+   ```
+3. Cole a sua `DATABASE_URL` no `.env.local`.
+4. Execute o script `src/lib/schema.sql` no console SQL do Neon para criar as tabelas e dados iniciais.
+*(Obs: Se você não configurar a DATABASE_URL, o app funciona perfeitamente utilizando o banco de dados em memória local já configurado com a música Blinding Lights).*
