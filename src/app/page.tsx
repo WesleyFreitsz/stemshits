@@ -5,19 +5,22 @@ import { useRouter } from 'next/navigation';
 import { Navbar } from '@/components/Navbar';
 import { RulesModal } from '@/components/RulesModal';
 import { QRCodeScannerModal } from '@/components/QRCodeScannerModal';
+import { PhysicalCardPreviewModal } from '@/components/PhysicalCardPreviewModal';
+import { ALL_DECK_SONGS } from '@/lib/deck-data';
+import { Song } from '@/lib/types';
 import { 
-  Disc3, 
   QrCode, 
   Sparkles, 
   Zap,
-  Volume2,
-  Award
+  Layers
 } from 'lucide-react';
 
 export default function HomePage() {
   const router = useRouter();
   const [isRulesOpen, setIsRulesOpen] = useState(false);
   const [isScannerOpen, setIsScannerOpen] = useState(false);
+  const [isCardDeckOpen, setIsCardDeckOpen] = useState(false);
+  const [selectedDeckSong, setSelectedDeckSong] = useState<Song>(ALL_DECK_SONGS[0]);
 
   const handleScanSuccess = (decoded: string) => {
     let cleanCode = decoded;
@@ -29,7 +32,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#08080d] text-white flex flex-col selection:bg-amber-500 selection:text-black">
-      {/* Navigation */}
+      {/* Navigation: Cabeçalho limpo com 2 botões para não quebrar a tela */}
       <Navbar
         onOpenRules={() => setIsRulesOpen(true)}
         onOpenScanner={() => setIsScannerOpen(true)}
@@ -59,7 +62,7 @@ export default function HomePage() {
               Pegue uma carta física da mesa, aponte a câmera para o <strong>QR Code</strong> e adivinhe a música pelas camadas de instrumentos.
             </p>
 
-            {/* Central Action Button */}
+            {/* Action Buttons */}
             <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
                 onClick={() => setIsScannerOpen(true)}
@@ -68,6 +71,15 @@ export default function HomePage() {
               >
                 <QrCode className="w-5 h-5 text-black" />
                 <span>Escanear QR Code da Carta</span>
+              </button>
+
+              <button
+                onClick={() => setIsCardDeckOpen(true)}
+                type="button"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/15 text-zinc-200 hover:text-white font-bold text-sm sm:text-base transition-all cursor-pointer min-h-[52px]"
+              >
+                <Layers className="w-4 h-4 text-cyan-400" />
+                <span>Ver Cartas & QR Codes (Simulador)</span>
               </button>
             </div>
           </div>
@@ -132,6 +144,15 @@ export default function HomePage() {
         isOpen={isScannerOpen}
         onClose={() => setIsScannerOpen(false)}
         onScanSuccess={handleScanSuccess}
+      />
+
+      {/* Modal Grande de Visualização das Cartas com QR Code */}
+      <PhysicalCardPreviewModal
+        isOpen={isCardDeckOpen}
+        onClose={() => setIsCardDeckOpen(false)}
+        song={selectedDeckSong}
+        allSongs={ALL_DECK_SONGS}
+        onSelectSong={(song) => setSelectedDeckSong(song)}
       />
     </div>
   );
