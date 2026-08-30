@@ -1,12 +1,10 @@
-# 🎵 Hitster Stems (Bandle Edition)
-
-Jogo de tabuleiro e cartas musicais inspirado na dinâmica social do **Hitster** e no sistema de faixas isoladas do **Bandle**.
+# 🎵 StemsHits
 
 ---
 
 ## 🚀 Como Funciona
 
-1. **Pegue a Carta Física:** Cada carta possui um **QR Code**, ano de lançamento (2019), visualizações no YouTube (1 Bilhão+) e nível de dificuldade (🟢 Fácil).
+1. **Pegue a Carta Física:** Cada carta possui um **QR Code**, ano de lançamento, visualizações no YouTube  e nível de dificuldade .
 2. **Escaneie com a Câmera:** O jogador da vez aponta a câmera do celular para o QR Code da carta. O navegador abre a rodada instantaneamente.
 3. **Ouça os Instrumentos (Stems):**
    - A música começa tocando **apenas a Bateria** (1º instrumento).
@@ -15,7 +13,7 @@ Jogo de tabuleiro e cartas musicais inspirado na dinâmica social do **Hitster**
    - Desbloquear Sintetizador 3 = **+3 Pontos** ⭐⭐⭐
    - Desbloquear Sintetizador 4 = **+2 Pontos** ⭐⭐
    - Desbloquear Voz Principal = **+1 Ponto** ⭐
-4. **Revele e Ouça no Spotify:** Ao clicar em *Revelar*, o app comemora com confetes, exibe a resposta (*The Weeknd - Blinding Lights*), soma os pontos e oferece link direto para a faixa completa no Spotify.
+4. **Revele e Ouça no Spotify:** Ao clicar em *Revelar*, o app comemora com confetes, exibe a resposta , soma os pontos e oferece link direto para a faixa completa no Spotify.
 
 ---
 
